@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kunim.uz — Kun tartibim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+ <a class="brand" href="#"><span class="brand-icon">K</span><span>kunim<span>.uz</span></span></a>
+ <div class="side-label">MENYU</div>
+ <nav class="side-nav">
+  <button class="side-link active" data-view="today"><span>▦</span> Bugungi reja</button>
+  <button class="side-link" data-view="week"><span>▤</span> Haftalik reja</button>
+  <button class="side-link" data-view="all"><span>☷</span> Barcha vazifalar</button>
+ </nav>
+ <div class="side-label second">SHAXSIY</div>
+ <div class="mini-card"><div class="mini-icon">✦</div><b>Har kun — yangi imkoniyat</b><p>Kichik qadamlar katta natijalarga olib boradi.</p></div>
+ <div class="sidebar-bottom"><div class="profile-avatar">U</div><div><b>Foydalanuvchi</b><small>Shaxsiy reja</small></div><button id="themeBtn" class="theme-btn" title="Tungi rejim">☾</button></div>
+</aside>
+<main class="main">
+ <header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div><div class="greeting" id="greeting">Xayrli kun!</div><div class="top-date" id="fullDate"></div></div><div class="top-actions"><span class="today-badge"><i></i> Reja nazoratda</span><div class="top-avatar">U</div></div></header>
+ <section class="welcome-row"><div><div class="overline">BUGUNGI MAQSADLARING</div><h1 id="pageTitle">Kuningni rejalashtir<span>.</span></h1><p>Vaqtingni to‘g‘ri taqsimla va maqsadlaring sari qadam tashla.</p></div><button class="primary-btn" id="openAdd"><b>＋</b> Vazifa qo‘shish</button></section>
+ <section class="stats">
+  <article class="stat-card"><div class="stat-top"><span>Jami vazifalar</span><span class="stat-icon purple">▤</span></div><strong id="totalStat">0</strong><small>Bugungi rejang</small></article>
+  <article class="stat-card"><div class="stat-top"><span>Bajarilgan</span><span class="stat-icon green">✓</span></div><strong id="doneStat">0</strong><small>Amalga oshirilgan ishlar</small></article>
+  <article class="stat-card"><div class="stat-top"><span>Qolgan vazifalar</span><span class="stat-icon orange">◷</span></div><strong id="leftStat">0</strong><small>Oldinda turgan ishlar</small></article>
+  <article class="stat-card progress-stat"><div class="stat-top"><span>Kunlik natija</span><span class="stat-percent" id="percentText">0%</span></div><div class="progress-track"><div id="progressBar"></div></div><small>Rejangning bajarilish darajasi</small></article>
+ </section>
+ <section class="content-grid">
+  <div class="panel planner-panel">
+   <div class="panel-head"><div><h2 id="listHeading">Bugungi vazifalar</h2><p id="listSub">Kun davomida bajariladigan ishlar</p></div><button class="text-btn" id="todayBtn">Bugunga qaytish ↗</button></div>
+   <div class="week-strip" id="weekStrip"></div>
+   <div class="filter-row"><div class="filter-tabs"><button class="filter active" data-filter="all">Barchasi</button><button class="filter" data-filter="pending">Bajarilmagan</button><button class="filter" data-filter="done">Bajarilgan</button></div><span class="task-count" id="taskCount">0 ta vazifa</span></div>
+   <div class="task-list" id="taskList"></div>
+   <div class="empty" id="emptyState"><div class="empty-art">✦</div><h3>Hozircha vazifa yo‘q</h3><p>Bugungi rejangga birinchi vazifani qo‘sh.</p><button class="primary-btn small" id="emptyAdd">＋ Vazifa qo‘shish</button></div>
+  </div>
+  <aside class="right-column">
+   <div class="panel focus-panel"><div class="panel-head"><div><h2>Kunlik maqsad</h2><p>Bugun o‘zing uchun vaqt ajrat</p></div><span class="target-icon">◎</span></div><div class="circle-wrap"><div class="progress-circle" id="circle"><div><strong id="circlePercent">0%</strong><small>bajarildi</small></div></div></div><div class="focus-foot"><span>Davom et!</span><b id="focusCount">0 / 0 vazifa</b></div></div>
+   <div class="panel note-panel"><div class="panel-head"><div><h2>Kun eslatmasi</h2><p>O‘zingga muhim fikr yozib qo‘y</p></div><span class="note-icon">✎</span></div><textarea id="dailyNote" placeholder="Bugun esdan chiqarmasligim kerak..."></textarea><div class="note-status" id="noteStatus">Avtomatik saqlanadi</div></div>
+  </aside>
+ </section>
+ <footer>© <span id="year"></span> <b>Kunim.uz</b> · Har kuningni mazmunli o‘tkaz.</footer>
+</main>
+</div>
+<div class="modal hidden" id="taskModal"><div class="modal-bg" id="modalBg"></div><form class="modal-box" id="taskForm"><button type="button" class="close" id="closeModal">×</button><div class="overline">YANGI REJA</div><h2>Vazifa qo‘shish</h2><p class="modal-sub">Rejangga yangi vazifani kiriting.</p>
+<label>Vazifa nomi<input id="taskTitle" type="text" placeholder="Masalan: Ingliz tili darsini qilish" required maxlength="90"></label>
+<div class="form-row"><label>Sana<input id="taskDate" type="date" required></label><label>Vaqt<input id="taskTime" type="time" value="09:00" required></label></div>
+<label>Kategoriya<select id="taskCategory"><option>Shaxsiy</option><option>O‘qish</option><option>Ish</option><option>Sport</option><option>Dam olish</option></select></label>
+<div class="modal-buttons"><button type="button" class="cancel-btn" id="cancelModal">Bekor qilish</button><button class="primary-btn" type="submit">Saqlash</button></div>
+</form></div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>
